@@ -14,9 +14,9 @@ def timestamp(s):
 def datestamp(s):
     '''
     Converts a datestamp given in "DDMMYY" ASCII format to a
-    datetime.datetime object
+    datetime.date object
     '''
-    return datetime.datetime.strptime(s, '%d%m%y')
+    return datetime.datetime.strptime(s, '%d%m%y').date()
 
 
 import re
