@@ -1,13 +1,14 @@
 import datetime
 def timestamp(s):
     '''
-    Converts a timestamp given in "HHMMSS" ASCII format to a
+    Converts a timestamp given in "HHMMSS.SSS..." ASCII format to a
     datetime.time object
     '''
     return datetime.time(
         hour=int(s[0:2]),
         minute=int(s[2:4]),
-        second=int(s[4:6]))
+        second=int(s[4:6]),
+        microsecond=int(s[7:12].ljust(6, '0')))
 
 
 def datestamp(s):
