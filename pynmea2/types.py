@@ -1,3 +1,5 @@
+import datetime
+import calendar
 from nmea import NMEASentence
 from nmea_utils import *
 from decimal import Decimal
@@ -361,6 +363,12 @@ class RMC(NMEASentence, LatLonFix):
         ("Magnetic Variation", "mag_variation"),
         ("Magnetic Variation Direction", "mag_var_dir")
     )
+
+    @property
+    def time(self):
+        """Return date/time as a UNIX timestamp."""
+        d = datetime.datetime.combine(self.datestamp, self.timestamp)
+        return calendar.timegm(d.utctimetuple()) + d.microsecond/1000000.0
 
 class RTE(NMEASentence):
     """ Routes
